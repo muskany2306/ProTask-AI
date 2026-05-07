@@ -10,9 +10,9 @@ function Dashboard() {
   const fetchTasks = async () => {
     try {
       const res = await fetch("https://protask-ai-backend.onrender.com/api/tasks", {
-        headers: {
-          "Authorization": token
-        }
+       headers: {
+       "Authorization": `Bearer ${token}`
+       }
       });
 
       const data = await res.json();
