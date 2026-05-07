@@ -29,7 +29,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        "http://localhost:5000/api/tasks",
+        "https://protask-ai-backend.onrender.com/api/tasks",
         {
           headers: {
             Authorization: token
@@ -125,7 +125,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       await fetch(
-        `http://localhost:5000/api/tasks/${id}`,
+        `https://protask-ai-backend.onrender.com/api/tasks/${id}`,
         {
           method: "PUT",
 

@@ -7,7 +7,7 @@ function Signup() {
 
   const handleSignup = async () => {
     const res = await fetch(
-      "http://localhost:5000/api/auth/signup",
+      "https://protask-ai-backend.onrender.com/api/auth/signup",
       {
         method: "POST",
         headers: {
