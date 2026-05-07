@@ -1,66 +1,38 @@
 import React, { useState } from "react";
 
 function Signup() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = async () => {
-    const res = await fetch(
-      "https://protask-ai-backend.onrender.com/api/auth/signup",
-      {
+  const signup = async () => {
+    try {
+      const res = await fetch("https://protask-ai-backend.onrender.com/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          name,
-          email,
-          password
-        })
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (data.msg === "User created") {
+        alert("Signup successful ✔");
+      } else {
+        alert(data.msg);
       }
-    );
 
-    const data = await res.json();
-
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-
-      window.location.href = "/dashboard";
-    } else {
-      alert(data.msg);
+    } catch (err) {
+      alert("Server error");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-3xl mb-4">Signup</h1>
+    <div>
+      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
 
-      <input
-        placeholder="Name"
-        className="border p-2 mb-2"
-        onChange={(e) => setName(e.target.value)}
-      />
-
-      <input
-        placeholder="Email"
-        className="border p-2 mb-2"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-
-      <input
-        type="password"
-        placeholder="Password"
-        className="border p-2 mb-2"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <button
-        onClick={handleSignup}
-        className="bg-green-500 text-white px-4 py-2 rounded"
-      >
-        Signup
-      </button>
+      <button onClick={signup}>Signup</button>
     </div>
   );
 }
