@@ -153,8 +153,7 @@ function Dashboard() {
   const completedTasks =
     tasks.filter(task => task.completed).length;
 
-  const pendingTasks =
-    tasks.length - completedTasks;
+  
 
   const productivity =
     tasks.length === 0
@@ -215,6 +214,10 @@ function Dashboard() {
           <p className="text-3xl font-bold">
             {completedTasks}
           </p>
+        </div>
+        <div className="bg-yellow-500 text-white p-5 rounded-2xl shadow-lg">
+        <h2 className="text-lg">Pending</h2>
+        <p className="text-3xl font-bold">{pendingTasks}</p>
         </div>
 
         <div className="bg-purple-500 text-white p-5 rounded-2xl shadow-lg">
